@@ -11,7 +11,11 @@ contract TodoList{
     // uint -> ket, Task is the value
     //will be like our database
     mapping (uint => Task) public tasks;
-
+    event TaskCreated(
+        uint id,
+        string content,
+        bool completed
+    );
     constructor () public {
         createTask("Wake up");
     }
@@ -19,6 +23,9 @@ contract TodoList{
     function createTask(string memory _content) public{
         taskCount ++;
         tasks[taskCount] = Task(taskCount,_content,false);
+        //Triger event in solidity
+        emit TaskCreated(taskCount,_content,false);
     }
+
 
 }

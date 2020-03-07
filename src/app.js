@@ -102,9 +102,15 @@ App = {
             }
             //Show the tasks
             $newTaskTemplate.show()
-        }
-        
-
+        } 
+    },
+    createTask: async()=> {
+        App.setLoading(true)
+        const content = $('#newTask').val()
+        //Call the smart contract function
+        await App.todoList.createTask(content)
+        //When finished REFRESH
+        window.location.reload()
     }
 }
 
